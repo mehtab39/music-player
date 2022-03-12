@@ -1,3 +1,5 @@
 export const DATASUCCESS = "DATASUCCESS";
+export const ARTISTSUCCESS = "ARTISTSUCCESS";
+
 export const DATALOADING = "DATALOADING";
 export const DATAERROR = "DATAERROR";

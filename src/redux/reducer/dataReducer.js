@@ -1,10 +1,12 @@
 import {
     DATALOADING,
     DATASUCCESS,
-    DATAERROR
+    DATAERROR,
+    ARTISTSUCCESS
 } from "../actionTypes";
 const init_state = {
     data: [],
+    artists:[],
     loading: false,
     error: false,
 }
@@ -22,6 +24,11 @@ export const dataReducer = (state = init_state, {
                     error: false,
                     data: payload
 
+            }
+        case ARTISTSUCCESS:
+            return {
+                ...state,
+                  artists: [...payload]
             }
             case DATAERROR:
                 return {

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
     DATALOADING,
     DATASUCCESS,
+    ARTISTSUCCESS,
     DATAERROR
 } from "../actionTypes";
 
@@ -13,6 +14,12 @@ const base_url = axios.create({
 export const datasuccess = data => {
     return {
         type: DATASUCCESS,
+        payload: data
+    }
+}
+export const artistsuccess = data => {
+    return {
+        type: ARTISTSUCCESS,
         payload: data
     }
 }
@@ -30,15 +37,26 @@ export const dataloading = $ => {
 }
 
 
-export const fetchData = payload => async dispatch => {
+export const fetchData = $ => async dispatch => {
     dispatch(dataloading())
     try {
         await base_url.get()
             .then(res => {
-                console.log('res.data:', res.data)
-                dispatch(datasuccess(res.data))
+                dispatch(datasuccess(res.data));
+                dispatch(getArtists(res.data))
+
             })
     } catch (e) {
         dispatch(dataerror())
     };
+}
+
+export const getArtists = songs => async dispatch => {
+      let artists = new Set();
+      songs.forEach(song=>{
+           artists.add(...song.artists.split(","))
+      })
+      dispatch(artistsuccess(artists))
+ 
+
 }
