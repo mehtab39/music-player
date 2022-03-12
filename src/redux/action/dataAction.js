@@ -57,6 +57,22 @@ export const getArtists = songs => async dispatch => {
            artists.add(...song.artists.split(","))
       })
       dispatch(artistsuccess(artists))
- 
-
 }
+
+export const filterArtist = artist => async dispatch => {
+    dispatch(dataloading())
+    let songs;
+    try {
+        await base_url.get()
+            .then(res => {
+                songs =  res.data.filter((el)=> el.artists.split(",").includes(artist) )
+                dispatch(datasuccess(songs))
+            })
+    } catch (e) {
+        console.log('e:', e)
+        dispatch(dataerror())
+    };
+   
+}
+
+

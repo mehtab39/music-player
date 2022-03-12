@@ -6,7 +6,7 @@ export const Player = ({data, index, setIndex}) => (
   <AudioPlayer
   style={{ 
       position: 'sticky',
-      bottom: 0
+      bottom: 0,
   }}
     autoPlay
     src={ data[index]?.url}
