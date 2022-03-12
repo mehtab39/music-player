@@ -65,7 +65,7 @@ export const LandingPage = $ => {
 
         {data.map((song, index) => {
           return <Grid item xs={2.5} key={song.url} onClick={$ => handleClick(index)}>
-            <img width='100%' height='100%' src={song.cover_image} />
+            <img alt={song.song} width='100%' height='100%' src={song.cover_image} />
 
           </Grid>
         })}
